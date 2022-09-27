@@ -29,9 +29,21 @@ class _InitialScreenState extends State<InitialScreen> {
                 padding: EdgeInsets.only(top: 8),
                 child: Tasks('Estudar Flutter', 'assets/images/flutter.png', 3),
               ),
-              Tasks('Andar de Bike', 'assets/images/bike.webp', 2),
-              Tasks('Ler 50 páginas', 'assets/images/ler.jpg', 1),
-              Tasks('Meditar', 'assets/images/meditar.jpeg', 4),
+              Tasks(
+                'Andar de Bike',
+                'assets/images/bike.webp',
+                2,
+              ),
+              Tasks(
+                'Ler 50 páginas',
+                'assets/images/ler.jpg',
+                1,
+              ),
+              Tasks(
+                'Meditar',
+                'assets/images/meditar.jpeg',
+                4,
+              ),
               Tasks(
                 'Jogar',
                 'assets/images/jogar.jpg',
