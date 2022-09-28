@@ -27,7 +27,11 @@ class _InitialScreenState extends State<InitialScreen> {
             children: const [
               Padding(
                 padding: EdgeInsets.only(top: 8),
-                child: Tasks('Estudar Flutter', 'assets/images/flutter.png', 3),
+                child: Tasks(
+                  'Estudar Flutter',
+                  'assets/images/flutter.png',
+                  3,
+                ),
               ),
               Tasks(
                 'Andar de Bike',
@@ -47,7 +51,7 @@ class _InitialScreenState extends State<InitialScreen> {
               Tasks(
                 'Jogar',
                 'assets/images/jogar.jpg',
-                0,
+                3,
               ),
               SizedBox(
                 height: 100,
@@ -62,7 +66,7 @@ class _InitialScreenState extends State<InitialScreen> {
             opacidade = !opacidade;
           });
         },
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.grey,
         child: const Icon(Icons.remove_red_eye),
       ),
     );
