@@ -1,4 +1,4 @@
-# alura_flutter_curso_1
+# alura_flutter_curso
 
 A new Flutter project.
 
