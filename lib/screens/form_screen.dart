@@ -27,85 +27,84 @@ class _FormScreenState extends State<FormScreen> {
             borderRadius: BorderRadius.circular(10),
             border: Border.all(width: 2),
           ),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
-                    controller: nameController,
-                    textAlign: TextAlign.center,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Nome',
-                      fillColor: Colors.white70,
-                      filled: true,
-                    ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  controller: nameController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Nome',
+                    fillColor: Colors.white70,
+                    filled: true,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
-                    controller: difficultyController,
-                    textAlign: TextAlign.center,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Dificuldade',
-                      fillColor: Colors.white70,
-                      filled: true,
-                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  controller: difficultyController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Dificuldade',
+                    fillColor: Colors.white70,
+                    filled: true,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: TextFormField(
-                    onChanged: (text) {
-                      setState(() {});
-                    },
-                    controller: imageController,
-                    textAlign: TextAlign.center,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Imagem',
-                      fillColor: Colors.white70,
-                      filled: true,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 100,
-                  width: 72,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      imageController.text,
-                      errorBuilder: (BuildContext context, Object exception,
-                          StackTrace? stackTrace) {
-                        return Container();
-                      },
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    print(nameController.text);
-                    print(int.parse(difficultyController.text));
-                    print(imageController.text);
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  onChanged: (text) {
+                    setState(() {});
                   },
-                  child: Text('Adicionar'),
-                )
-              ],
-            ),
+                  controller: imageController,
+                  textAlign: TextAlign.center,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Imagem',
+                    fillColor: Colors.white70,
+                    filled: true,
+                  ),
+                ),
+              ),
+              Container(
+                height: 100,
+                width: 72,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.blue,
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    imageController.text,
+                    errorBuilder: (BuildContext context, Object exception,
+                        StackTrace? stackTrace) {
+                      return Image.asset('assets/images/no-image.png');
+                    },
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  print(nameController.text);
+                  print(int.parse(difficultyController.text));
+                  print(imageController.text);
+                },
+                child: Text('Adicionar'),
+              )
+            ],
           ),
         ),
       ),
