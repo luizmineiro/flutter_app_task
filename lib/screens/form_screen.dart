@@ -140,7 +140,7 @@ class _FormScreenState extends State<FormScreen> {
                         Navigator.pop(context);
                       }
                     },
-                    child: Text('Adicionar'),
+                    child: const Text('Adicionar'),
                   )
                 ],
               ),
