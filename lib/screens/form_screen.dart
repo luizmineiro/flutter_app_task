@@ -2,7 +2,7 @@ import 'package:alura_flutter_curso_1/data/task_inherited.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key, required this.taskContext});
+  const FormScreen({Key? key, required this.taskContext}): super(key: key);
 
   final BuildContext taskContext;
 
@@ -135,12 +135,12 @@ class _FormScreenState extends State<FormScreen> {
                         // print(nameController.text);
                         // print(int.parse(difficultyController.text));
                         // print(imageController.text);
-                        TaskInherited.of(context)?.newTask(
+                        TaskInherited.of(widget.taskContext)?.newTask(
                           nameController.text,
                           imageController.text,
                           int.parse(difficultyController.text),
                         );
-                        ScaffoldMessenger.of(widget.taskContext).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Criando uma nova tarefa'),
                           ),
