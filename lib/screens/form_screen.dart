@@ -1,20 +1,37 @@
-import 'package:alura_flutter_curso_1/data/task_inherited.dart';
 import 'package:flutter/material.dart';
+import 'package:nosso_primeiro_projeto/data/task_inherited.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({Key? key, required this.taskContext}): super(key: key);
+  const FormScreen({Key? key, required this.taskContext}) : super(key: key);
 
   final BuildContext taskContext;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
 }
+
 class _FormScreenState extends State<FormScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController difficultyController = TextEditingController();
   TextEditingController imageController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  bool valueValidator(String? value){
+     if(value != null && value.isEmpty){
+       return true;
+     }
+     return false;
+  }
+  bool difficultyValidator(String? value){
+    if(value != null && value.isEmpty){
+      if(int.parse(value) > 5 ||
+          int.parse(value) < 1){
+        return true;
+      }
+    }
+    return false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,25 +49,24 @@ class _FormScreenState extends State<FormScreen> {
               decoration: BoxDecoration(
                 color: Colors.black12,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 2),
+                border: Border.all(width: 3),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (String? value) {
-                        if (value != null && value.isEmpty) {
-                          return 'insira o nome da tarefa';
-                        } else {
-                          return null;
+                        if (valueValidator(value)) {
+                          return 'Insira o nome da Tarefa';
                         }
+                        return null;
                       },
                       controller: nameController,
                       textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Nome',
                         fillColor: Colors.white70,
@@ -59,21 +75,18 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty ||
-                            int.parse(value) > 5 ||
-                            int.parse(value) < 1) {
-                          return 'insira uma dificuldade entre 1 e 5';
-                        } else {
-                          return null;
+                        if (difficultyValidator(value)) {
+                          return 'Insira um Dificuldade entre 1 e 5';
                         }
+                        return null;
                       },
                       keyboardType: TextInputType.number,
                       controller: difficultyController,
                       textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Dificuldade',
                         fillColor: Colors.white70,
@@ -82,22 +95,21 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       onChanged: (text) {
                         setState(() {});
                       },
                       validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'insira uma imagem valida';
-                        } else {
-                          return null;
+                        if (valueValidator(value)) {
+                          return 'Insira um URL de Imagem!';
                         }
+                        return null;
                       },
                       keyboardType: TextInputType.url,
                       controller: imageController,
                       textAlign: TextAlign.center,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'Imagem',
                         fillColor: Colors.white70,
@@ -111,10 +123,7 @@ class _FormScreenState extends State<FormScreen> {
                     decoration: BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.blue,
-                      ),
+                      border: Border.all(width: 2, color: Colors.blue),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -122,7 +131,7 @@ class _FormScreenState extends State<FormScreen> {
                         imageController.text,
                         errorBuilder: (BuildContext context, Object exception,
                             StackTrace? stackTrace) {
-                          return Image.asset('assets/images/no-image.png');
+                          return Image.asset('assets/images/nophoto.png');
                         },
                         fit: BoxFit.cover,
                       ),
@@ -132,23 +141,22 @@ class _FormScreenState extends State<FormScreen> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         // print(nameController.text);
-                        // print(int.parse(difficultyController.text));
+                        // print(difficultyController.text);
                         // print(imageController.text);
-                        TaskInherited.of(widget.taskContext)?.newTask(
-                          nameController.text,
-                          imageController.text,
-                          int.parse(difficultyController.text),
-                        );
+                        TaskInherited.of(widget.taskContext).newTask(
+                            nameController.text,
+                            imageController.text,
+                            int.parse(difficultyController.text));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Criando uma nova tarefa'),
+                            content: Text('Criando uma nova Tarefa'),
                           ),
                         );
                         Navigator.pop(context);
                       }
                     },
-                    child: const Text('Adicionar'),
-                  )
+                    child: Text('Adicionar!'),
+                  ),
                 ],
               ),
             ),

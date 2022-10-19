@@ -1,5 +1,6 @@
-import 'package:alura_flutter_curso_1/components/difficulty.dart';
+import '/components/difficulty.dart';
 import 'package:flutter/material.dart';
+
 
 class Tasks extends StatefulWidget {
   final String nome;
@@ -90,7 +91,7 @@ class _TasksState extends State<Tasks> {
                                   overflow: TextOverflow.ellipsis),
                             ),
                           ),
-                          Difficulty(widget.dificuldade),
+                          Difficulty(dificultyLevel: widget.dificuldade),
                           // vai ser um novo componente.
                         ],
                       ),
