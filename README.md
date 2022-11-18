@@ -1,6 +1,6 @@
 # nosso_primeiro_projeto
 
-A new Flutter project.
+App de tarefas em flutter feito durante o curso de formação flutter da Alura 
 
 ## Getting Started
 
