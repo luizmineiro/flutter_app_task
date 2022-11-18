@@ -3,24 +3,23 @@
 import 'package:flutter/material.dart';
 import '/components/difficulty.dart';
 
-
 class Task extends StatefulWidget {
   final String nome;
   final String foto;
   final int dificuldade;
   int nivel;
-  Task(this.nome, this.foto, this.dificuldade, [this.nivel = 0, Key? key,])
-      : super(key: key);
-
-
-
-
+  Task(
+    this.nome,
+    this.foto,
+    this.dificuldade, [
+    this.nivel = 0,
+    Key? key,
+  ]) : super(key: key);
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-
   bool assetOrNetwork() {
     if (widget.foto.contains('http')) {
       return false;
