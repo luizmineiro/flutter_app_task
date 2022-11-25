@@ -6,9 +6,7 @@ Future<Database> getDatabase() async {
   return openDatabase(
     path,
     onCreate: (db, version) {
-      db.execute(
-        tabela,
-      );
+      db.execute('');
     },
     version: 1, 
   );
