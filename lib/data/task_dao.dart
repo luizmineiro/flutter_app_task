@@ -7,8 +7,8 @@ import 'package:sqflite/sqlite_api.dart';
 class TaskDao {
   static const String tableSql = 'CREATE TABLE $_tablename('
       '$_name TEXT, '
-      '$_difficulty INTEGER'
-      '$_image TEXT';
+      '$_difficulty INTEGER, '
+      '$_image TEXT)';
 
   static const String _tablename = 'taskTable';
   static const String _name = 'name';
@@ -16,7 +16,7 @@ class TaskDao {
   static const String _image = 'image';
 
   save(Task tarefa) async {
-    print('iniciando o save');
+    print('iniciando o save: ');
     final Database bancoDeDados = await getDatabase();
     var itemExists = await find(tarefa.nome);
     Map<String, dynamic> taskMap = toMap(tarefa);
@@ -36,7 +36,7 @@ class TaskDao {
 
   Map<String, dynamic> toMap(Task tarefa) {
     print('Convertendo tarefa em map');
-    final Map<String, dynamic> mapaDeTarefas = Map();
+    final Map<String, dynamic> mapaDeTarefas = {};
     mapaDeTarefas[_name] = tarefa.nome;
     mapaDeTarefas[_difficulty] = tarefa.dificuldade;
     mapaDeTarefas[_image] = tarefa.foto;
@@ -45,7 +45,7 @@ class TaskDao {
   }
 
   Future<List<Task>> findAll() async {
-    print('acessando o findAll');
+    print('Acessando o findAll: ');
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> result =
         await bancoDeDados.query(_tablename);
@@ -60,7 +60,7 @@ class TaskDao {
       final Task tarefa = Task(linha[_name], linha[_image], linha[_difficulty]);
       tarefas.add(tarefa);
     }
-    print('Lista de Tarefas $tarefas');
+    print('Lista de Tarefas ${tarefas.toString()}');
     return tarefas;
   }
 
