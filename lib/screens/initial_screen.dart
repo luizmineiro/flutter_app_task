@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:nosso_primeiro_projeto/components/task.dart';
@@ -18,6 +18,15 @@ class _InitialScreenState extends State<InitialScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: Container(),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(
+                  () {},
+                );
+              },
+              icon: Icon(Icons.refresh))
+        ],
         title: const Text('Tarefas'),
       ),
       body: Padding(
@@ -94,6 +103,12 @@ class _InitialScreenState extends State<InitialScreen> {
               builder: (contextNew) => FormScreen(
                 taskContext: context,
               ),
+            ),
+          ).then(
+            (value) => setState(
+              () {
+                print('Recarregando a tela inicial ');
+              },
             ),
           );
         },

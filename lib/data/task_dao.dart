@@ -5,7 +5,7 @@ import 'package:nosso_primeiro_projeto/data/database.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class TaskDao {
-  static const String tableSql = 'CREATE TABLE $_tablename('
+ static const String tableSql = 'CREATE TABLE $_tablename('
       '$_name TEXT, '
       '$_difficulty INTEGER, '
       '$_image TEXT)';

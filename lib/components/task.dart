@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:nosso_primeiro_projeto/data/task_dao.dart';
 import '/components/difficulty.dart';
 
 class Task extends StatefulWidget {
@@ -91,6 +92,9 @@ class _TaskState extends State<Task> {
                       height: 52,
                       width: 52,
                       child: ElevatedButton(
+                          onLongPress: () {
+                            TaskDao().delete(widget.nome);
+                          },
                           onPressed: () {
                             print(widget.nivel);
                             setState(() {
